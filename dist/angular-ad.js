@@ -1,5 +1,5 @@
 /*! cjoop-ad-angular - v0.0.5 - 2016-09-10
-* https://github.com/cjjava/cjoop-ad
+* https://github.com/cjjava/cjoop-ad-angular
 * Copyright (c) 2016 cjjava <85309651@qq.com>; Licensed MIT */
 (function(window, angular) {
 	'use strict';
@@ -38,9 +38,19 @@
 					var ngModels = bindModel.split(',');
 					var $parent = $scope.$parent;
 					var defItem = {id:"",name:"请选择",$$index:-1};
-					angular.forEach(ngModels,function(item){
-						$scope[item+"s"] = [defItem];
-						$scope[item] = defItem;
+					angular.forEach(ngModels,function(itemName,index){
+						$scope[itemName+"s"] = [defItem];
+						$scope[itemName] = defItem;
+						var item = $parent[itemName];
+						if(!item){
+							item = {id:"",name:"请选择"};
+						}
+						if(angular.isObject(item)){
+							item.$$index = index;
+						}else{
+							throw new Error("scope."+itemName+"不是一个json对象.");
+						}
+						$parent[itemName] = item;
 					});
 					
 					$scope.refreshADInfo = function(code,index){
@@ -87,7 +97,8 @@
 					$scope.change = function(index){
 						var ngModelName = ngModels[index];
 						var item = $scope[ngModelName];
-						$parent[ngModelName] = item;
+						$parent[ngModelName].id = item.id;
+						$parent[ngModelName].name = item.name;
 					};
 					
 					var watchHandler = function(newValue){
@@ -95,8 +106,10 @@
 							if(newValue){
 								var index = newValue.$$index;
 								if(newValue.name === null || newValue.name === ''){
-									for(var j=index;j<ngModels.length;j++){
+									$scope[ngModels[index]] = defItem;
+									for(var j=index+1;j<ngModels.length;j++){
 										$scope[ngModels[j]] = defItem;
+										$scope[ngModels[j]+"s"] = [defItem];
 									}
 								}else{
 									var items = $scope[ngModels[index] + "s"];
