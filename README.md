@@ -1,4 +1,5 @@
 ### cjoop-ad-angularjs
+![Bower version](https://img.shields.io/bower/v/cjoop-ad-angular.svg)
 # Installation
 
 ```sh
