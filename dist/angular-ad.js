@@ -113,12 +113,14 @@
 									}
 								}else{
 									var items = $scope[ngModels[index] + "s"];
-									for(var i = 0;i<items.length;i++){
-										var item = items[i];
-										if((newValue.id && item.id === newValue.id) || item.name === newValue.name){
-											$scope[ngModels[index]] = item;
-											$scope.loadADInfo(item,index+1);
-											return;
+									if(items){
+										for(var i = 0;i<items.length;i++){
+											var item = items[i];
+											if((newValue.id && item.id === newValue.id) || item.name === newValue.name){
+												$scope[ngModels[index]] = item;
+												$scope.loadADInfo(item,index+1);
+												return;
+											}
 										}
 									}
 								}
