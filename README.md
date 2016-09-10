@@ -32,9 +32,9 @@ angular初始化模块引入：
 ```javascript
 angular.module('demo',['cjoop.ad'])
 	.controller('DemoCtrl',['$scope',function($scope){
-		$scope.a = {name:'陕西省',$$index:0};
-		$scope.b = {name:'延安市',$$index:1};//name回显
-		$scope.c = {id:'610625',$$index:2};//id回显
+		$scope.a = {name:'陕西省'};
+		$scope.b = {name:'延安市'};//name回显
+		$scope.c = {id:'610625'};//id回显
     //清除操作,可以选择清除指定级的数据
 		$scope.clean = function(){
 			$scope.a.name = '';
