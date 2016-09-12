@@ -101,6 +101,8 @@
 						var item = $scope[ngModelName];
 						$parent[ngModelName].id = item.id;
 						$parent[ngModelName].name = item.name;
+						$parent[ngModelName].$$index = index;
+						$scope.loadADInfo(item,index+1);
 					};
 					
 					var watchHandler = function(newValue){

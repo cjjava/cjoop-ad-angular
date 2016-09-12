@@ -1,4 +1,4 @@
-/*! cjoop-ad-angular - v0.0.5 - 2016-09-10
+/*! cjoop-ad-angular - v0.0.5 - 2016-09-12
 * https://github.com/cjjava/cjoop-ad-angular
 * Copyright (c) 2016 cjjava <85309651@qq.com>; Licensed MIT */
 (function(window, angular) {
@@ -99,6 +99,8 @@
 						var item = $scope[ngModelName];
 						$parent[ngModelName].id = item.id;
 						$parent[ngModelName].name = item.name;
+						$parent[ngModelName].$$index = index;
+						$scope.loadADInfo(item,index+1);
 					};
 					
 					var watchHandler = function(newValue){
