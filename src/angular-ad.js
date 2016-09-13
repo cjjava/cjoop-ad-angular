@@ -30,7 +30,7 @@
 					var template = new Array(ngModels.length);
 					template.push('<div class="ad-wrapper">');
 					angular.forEach(ngModels,function(item,index){
-						template.push('<select ng-change="change('+index+')" class="ad-select" ng-model="'+item+'" ng-options="'+item+'.name for '+item+' in '+item+'s"></select>\n');
+						template.push('<select ng-change="change('+index+')" class="ad-select {{classInfo}}" ng-model="'+item+'" ng-options="'+item+'.name for '+item+' in '+item+'s"></select>\n');
 					});
 					template.push('</div>');
 					return template.join("");
@@ -39,6 +39,7 @@
 					var bindModel = $attrs.bindModel;
 					var ngModels = bindModel.split(',');
 					var $parent = $scope.$parent;
+					$scope.classInfo=$attrs.class;
 					var defItem = {id:"",name:"请选择",$$index:-1};
 					angular.forEach(ngModels,function(itemName,index){
 						$scope[itemName+"s"] = [defItem];

@@ -1,4 +1,4 @@
-/*! cjoop-ad-angular - v0.0.5 - 2016-09-12
+/*! cjoop-ad-angular - v0.0.6 - 2016-09-13
 * https://github.com/cjjava/cjoop-ad-angular
 * Copyright (c) 2016 cjjava <85309651@qq.com>; Licensed MIT */
 (function(window, angular) {
@@ -28,7 +28,7 @@
 					var template = new Array(ngModels.length);
 					template.push('<div class="ad-wrapper">');
 					angular.forEach(ngModels,function(item,index){
-						template.push('<select ng-change="change('+index+')" class="ad-select" ng-model="'+item+'" ng-options="'+item+'.name for '+item+' in '+item+'s"></select>\n');
+						template.push('<select ng-change="change('+index+')" class="ad-select {{classInfo}}" ng-model="'+item+'" ng-options="'+item+'.name for '+item+' in '+item+'s"></select>\n');
 					});
 					template.push('</div>');
 					return template.join("");
@@ -37,6 +37,7 @@
 					var bindModel = $attrs.bindModel;
 					var ngModels = bindModel.split(',');
 					var $parent = $scope.$parent;
+					$scope.classInfo=$attrs.class;
 					var defItem = {id:"",name:"请选择",$$index:-1};
 					angular.forEach(ngModels,function(itemName,index){
 						$scope[itemName+"s"] = [defItem];
