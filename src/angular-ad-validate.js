@@ -4,6 +4,6 @@
 		"func": function(field){
 			return (field.find("option:selected").text() === "请选择") ? false : true;
 		},
-		"alertText": "* 此处不可空白"
+		"alertText": "* 此处必须选择"
 	};
 })(jQuery);
