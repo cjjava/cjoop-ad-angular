@@ -7,7 +7,7 @@
     <title>行政区划例子</title>
 
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
+    <link rel="stylesheet" href="../bower_components/validationengine/css/validationEngine.jquery.css"/>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -16,24 +16,20 @@
     <![endif]-->
   </head>
   <body ng-controller="DemoCtrl" class="container">
-    <br/>
-		三级地址:{{province.name}} {{city.name}} {{county.name}}
-		<ad bind-model="province,city,county"></ad>
-		<br/>
-		五级地址:{{province.name}} {{city.name}} {{county.id}} {{town.name}} {{village.name}}
-		<ad bind-model="province,city,county,town,village"></ad>
-		<br/>
-		独立作用域:{{p.name}} {{ci.name}} {{co.name}} {{t.name}} {{v.name}}
-		<ad bind-model="p,ci,co,t,v"></ad>
-		<br/>
-    回显地址:<ad bind-model="a,b,c" class="test"></ad>
-    <br/>
-    <a class="btn btn-default" ng-click="clean()">清除内容</a>
+      <br/><br/><br/><br/>
+      <form id="createForm">
+        必填验证:<ad bind-model="a,b,c" class="validate[custom[ad-required]]"></ad><br/>
+        <button ng-click="validate()">验证</button>
+      </form>
+
     <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
     <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="../bower_components/angular/angular.min.js" ></script>
+    <script src="../bower_components/validationengine/js/languages/jquery.validationEngine-zh_CN.js"></script>
+    <script src="../bower_components/validationengine/js/jquery.validationEngine.js"></script>
     <script src="../dist/angular-ad-data.min.js" ></script>
     <script src="../dist/angular-ad.js" ></script>
-    <script src="demo.js" ></script>
+    <script src="../dist/angular-ad-validate.min.js" ></script>
+    <script src="demo-validate.js" ></script>
   </body>
 </html>

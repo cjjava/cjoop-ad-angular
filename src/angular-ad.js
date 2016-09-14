@@ -1,8 +1,3 @@
-/**
- * @license cjoop-ad v0.0.1
- * (c) 2010-2015 cjoop, Inc. http://www.cjoop.com
- * License: MIT
- */
 (function(window, angular) {
 	'use strict';
 	/**

@@ -1,6 +1,6 @@
 {
   "name": "cjoop-ad-angular",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "AngularJS module for ad",
   "homepage": "https://github.com/cjjava/cjoop-ad-angular",
   "authors": [
@@ -17,6 +17,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.5.3"
+    "angular": "~1.5.3",
+    "validationengine": "^2.6.4"
   }
 }

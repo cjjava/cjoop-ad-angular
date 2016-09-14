@@ -28,7 +28,8 @@ module.exports = function(grunt) {
 	      dist: { 
 	      	files:{
 				'dist/<%= fileName %>.min.js':['<%= concat.dist.dest %>'],
-				'dist/angular-ad-data.min.js':['src/angular-ad-data.js']
+				'dist/angular-ad-data.min.js':['src/angular-ad-data.js'],
+				'dist/angular-ad-validate.min.js':['src/angular-ad-validate.js'],
 			}
 	      }
 	   },
