@@ -1,4 +1,4 @@
-/*! cjoop-ad-angular - v0.0.6 - 2016-09-13
+/*! cjoop-ad-angular - v0.0.7 - 2016-09-14
 * https://github.com/cjjava/cjoop-ad-angular
 * Copyright (c) 2016 cjjava <85309651@qq.com>; Licensed MIT */
 (function(window, angular) {
@@ -38,6 +38,7 @@
 					var ngModels = bindModel.split(',');
 					var $parent = $scope.$parent;
 					$scope.classInfo=$attrs.class;
+					$element.removeClass($attrs.class);
 					var defItem = {id:"",name:"请选择",$$index:-1};
 					angular.forEach(ngModels,function(itemName,index){
 						$scope[itemName+"s"] = [defItem];

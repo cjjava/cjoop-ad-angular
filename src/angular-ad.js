@@ -40,6 +40,7 @@
 					var ngModels = bindModel.split(',');
 					var $parent = $scope.$parent;
 					$scope.classInfo=$attrs.class;
+					$element.removeClass($attrs.class);
 					var defItem = {id:"",name:"请选择",$$index:-1};
 					angular.forEach(ngModels,function(itemName,index){
 						$scope[itemName+"s"] = [defItem];
