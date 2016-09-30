@@ -25,7 +25,7 @@
 					var template = new Array(ngModels.length);
 					template.push('<div class="ad-wrapper">');
 					angular.forEach(ngModels,function(item,index){
-						template.push('<select ng-change="change('+index+')" class="ad-select {{classInfo}}" ng-model="'+item+'" ng-options="'+item+'.name for '+item+' in '+item+'s"></select>\n');
+						template.push('<select ng-change="change('+index+')" class="ad-select {{'+item+'_class}}" ng-model="'+item+'" ng-options="'+item+'.name for '+item+' in '+item+'s"></select>\n');
 					});
 					template.push('</div>');
 					return template.join("");
@@ -34,12 +34,24 @@
 					var bindModel = $attrs.bindModel;
 					var ngModels = bindModel.split(',');
 					var $parent = $scope.$parent;
-					$scope.classInfo=$attrs.class;
+					if(!$attrs.class){
+						$attrs.class = "";
+					}
+					var classInfo=$attrs.class.split(",");
 					$element.removeClass($attrs.class);
 					var defItem = {id:"",name:"请选择",$$index:-1};
 					angular.forEach(ngModels,function(itemName,index){
 						$scope[itemName+"s"] = [defItem];
 						$scope[itemName] = defItem;
+						if(classInfo.length>1){
+							if(index<classInfo.length){
+								$scope[itemName + "_class"] = classInfo[index];
+							}else{
+								$scope[itemName + "_class"] = "";
+							}
+						}else{
+							$scope[itemName + "_class"] = classInfo[0];
+						}
 						var item = $parent[itemName];
 						if(!item){
 							item = {id:"",name:"请选择"};

@@ -18,7 +18,9 @@
   <body ng-controller="DemoCtrl" class="container">
       <br/><br/><br/><br/>
       <form id="createForm">
-        必填验证:<ad bind-model="a,b,c" class="validate[custom[ad-required]]"></ad><br/>
+        非必填验证:<ad bind-model="a,b,c"></ad><br/>
+        必填验证:<ad bind-model="d,e,f" class="validate[custom[ad-required]]"></ad><br/>
+        部分必填验证:<ad bind-model="d,e,f" class="validate[custom[ad-required]],"></ad><br/>
         <button ng-click="validate()">验证</button>
       </form>
 
