@@ -126,6 +126,8 @@
 								for(var j=index+1;j<ngModels.length;j++){
 									$scope[ngModels[j]] = defItem;
 									$scope[ngModels[j]+"s"] = [defItem];
+									$parent[ngModels[j]].id = "";
+									$parent[ngModels[j]].name = "";
 								}
 							}else{
 								var items = $scope[ngModels[index] + "s"];
