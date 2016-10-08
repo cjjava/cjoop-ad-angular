@@ -1,4 +1,4 @@
-/*! cjoop-ad-angular - v0.1.0 - 2016-09-30
+/*! cjoop-ad-angular - v0.1.0 - 2016-10-08
 * https://github.com/cjjava/cjoop-ad-angular
 * Copyright (c) 2016 cjjava <85309651@qq.com>; Licensed MIT */
 (function(window, angular) {
@@ -16,7 +16,7 @@
 		return angular.isArray(window.adData) && window.adData.length>0;
 	}
 	angular.module('cjoop.ad',[])
-		.directive('ad',['$http','$timeout',function($http,$timeout){
+		.directive('ad',['$http',function($http){
 			return {
 				scope:{},
 				template:function($element,$attrs){
@@ -114,34 +114,38 @@
 						$parent[ngModelName].id = item.id;
 						$parent[ngModelName].name = item.name;
 						$parent[ngModelName].$$index = index;
+						for(var j=index+1;j<ngModels.length;j++){
+							$parent[ngModels[j]].id = "";
+							$parent[ngModels[j]].name = "";
+						}
 						$scope.loadADInfo(item,index+1);
 					};
 					
 					var watchHandler = function(newValue){
-						$timeout(function(){
-							if(newValue){
-								var index = newValue.$$index;
-								if(newValue.name === null || newValue.name === ''){
-									$scope[ngModels[index]] = defItem;
-									for(var j=index+1;j<ngModels.length;j++){
-										$scope[ngModels[j]] = defItem;
-										$scope[ngModels[j]+"s"] = [defItem];
-									}
-								}else{
-									var items = $scope[ngModels[index] + "s"];
-									if(items){
-										for(var i = 0;i<items.length;i++){
-											var item = items[i];
-											if((newValue.id && item.id === newValue.id) || item.name === newValue.name){
-												$scope[ngModels[index]] = item;
-												$scope.loadADInfo(item,index+1);
-												return;
-											}
+						if(newValue){
+							var index = newValue.$$index;
+							if(newValue.name === null || newValue.name === ''){
+								$scope[ngModels[index]] = defItem;
+								for(var j=index+1;j<ngModels.length;j++){
+									$scope[ngModels[j]] = defItem;
+									$scope[ngModels[j]+"s"] = [defItem];
+								}
+							}else{
+								var items = $scope[ngModels[index] + "s"];
+								if(items){
+									for(var i = 0;i<items.length;i++){
+										var item = items[i];
+										if((newValue.id && item.id === newValue.id) || item.name === newValue.name){
+											$scope[ngModels[index]] = item;
+											$scope.loadADInfo(item,index+1);
+											newValue.id = item.id;
+											newValue.name = item.name;
+											return;
 										}
 									}
 								}
 							}
-		    	 		},0);
+						}
 					};
 					for(var i = 0;i<ngModels.length;i++){
 						$parent.$watch(ngModels[i],watchHandler,true);
